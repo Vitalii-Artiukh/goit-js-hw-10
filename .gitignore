@@ -15,6 +15,7 @@ README.md
 *.local
 
 
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -25,3 +26,5 @@ README.md
 *.njsproj
 *.sln
 *.sw?
+
+1-gallery.js
