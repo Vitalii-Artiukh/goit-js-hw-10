@@ -6,7 +6,14 @@ console.dir(form);
 
 function promise(isDelay, isState) {
   return new Promise((resolve, reject) => {
-    if (isDelay >= 0) {
+    if (isDelay < 0) {
+      iziToast.show({
+        message: '❌ Enter a positive number',
+        messageColor: '#ffffff',
+        backgroundColor: '#ff4a4a',
+        position: 'topRight',
+      });
+    } else {
       setTimeout(() => {
         if (isState === 'fulfilled') {
           resolve(isDelay);
@@ -15,12 +22,6 @@ function promise(isDelay, isState) {
         }
       }, isDelay);
     }
-    iziToast.show({
-      message: '❌ Enter a positive number',
-      messageColor: '#ffffff',
-      backgroundColor: '#ff4a4a',
-      position: 'topRight',
-    });
   });
 }
 
