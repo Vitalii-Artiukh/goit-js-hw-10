@@ -4,21 +4,7 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-const dateInputEl = document.querySelector('#datetime-picker');
-const btnStartTimer = document.querySelector('.input-button > button');
-const textValue = document.querySelectorAll('.timer .value');
-
-btnStartTimer.addEventListener('click', startTimer);
-
-btnStartTimer.disabled = true;
-
-let userSelectedDate = 0;
-let timeForTimer = 0;
-let time;
-let diffTime;
-let dataTime;
-
-flatpickr('#datetime-picker', {
+const flatpickrOptions = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -34,9 +20,7 @@ flatpickr('#datetime-picker', {
         messageColor: '#ffffff',
         backgroundColor: 'red',
         close: false,
-        closeOnEscape: true,
         position: 'topRight',
-        timeout: 3000,
       });
       return;
     }
@@ -44,7 +28,23 @@ flatpickr('#datetime-picker', {
     btnStartTimer.disabled = false;
     userSelectedDate = selectedDates[0];
   },
-});
+};
+
+const dateInputEl = document.querySelector('#datetime-picker');
+const btnStartTimer = document.querySelector('.input-button > button');
+const textValue = document.querySelectorAll('.timer .value');
+
+btnStartTimer.addEventListener('click', startTimer);
+
+btnStartTimer.disabled = true;
+
+let userSelectedDate = 0;
+let timeForTimer = 0;
+let time;
+let diffTime;
+let dataTime;
+
+flatpickr(dateInputEl, flatpickrOptions);
 
 const addLeadingZero = value => {
   textValue[0].textContent = String(value.days).padStart(2, '0');
@@ -78,9 +78,7 @@ function startTimer(event) {
         titleColor: '#f6f6f6',
         backgroundColor: 'green',
         close: false,
-        closeOnEscape: true,
         position: 'topRight',
-        timeout: 3000,
       });
     }
 
